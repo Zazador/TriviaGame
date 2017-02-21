@@ -113,19 +113,20 @@ $(document).ready(function(){
 
 	}
 
-
-
-	
 	function countdown() {
+		//Time is up
 		if (timeLeft == 0) {
 			clearTimeout(timer);
 			index++;
+			//Check if finished all questions
 			if (index == 10) {
 				alert("done");
+			//If not done with questions, go to next one and reset timer
 			} else {
 				timeLeft = 5;
 				game();
 			}
+		//Display remaining time
 		} else {
 			$("#timer").text(timeLeft + " seconds remaining");
 			timeLeft--;

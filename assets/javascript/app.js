@@ -95,20 +95,37 @@ $(document).ready(function(){
 	]
 	}
 
-	for(var i = 0;i < 10; i++) {
-		var timeLeft = 3;
-		var timer = setInterval(countdown, 1000);
-		$("#question").text(questionBank.questions[i].question);
-		$("#option-0").text(questionBank.questions[i].answers[0]);
-		$("#option-1").text(questionBank.questions[i].answers[1]);
-		$("#option-2").text(questionBank.questions[i].answers[2]);
-		$("#option-3").text(questionBank.questions[i].answers[3]);
+	var answerKey = [1, 0, 3, 3, 2, 2, 0, 0, 0, 1];
+
+	var index = 0;
+	var timeLeft = 5;
+	var timer;
+
+	game();
+
+	function game() {
+		timer = setInterval(countdown, 1000);
+		$("#question").text(questionBank.questions[index].question);
+		$("#option-0").text(questionBank.questions[index].answers[0]);
+		$("#option-1").text(questionBank.questions[index].answers[1]);
+		$("#option-2").text(questionBank.questions[index].answers[2]);
+		$("#option-3").text(questionBank.questions[index].answers[3]);
+
 	}
+
+
 
 	
 	function countdown() {
 		if (timeLeft == 0) {
 			clearTimeout(timer);
+			index++;
+			if (index == 10) {
+				alert("done");
+			} else {
+				timeLeft = 5;
+				game();
+			}
 		} else {
 			$("#timer").text(timeLeft + " seconds remaining");
 			timeLeft--;

@@ -98,7 +98,7 @@ $(document).ready(function(){
 	var answerKey = [1, 0, 3, 3, 2, 2, 0, 0, 0, 1];
 
 	var index = 0;
-	var timeLeft = 5;
+	var timeLeft = 29;
 	var timer;
 
 	game();
@@ -115,15 +115,15 @@ $(document).ready(function(){
 
 	function countdown() {
 		//Time is up
-		if (timeLeft == 0) {
+		if (timeLeft == -1) {
 			clearTimeout(timer);
 			index++;
 			//Check if finished all questions
 			if (index == 10) {
-				alert("done");
+				//alert("done");
 			//If not done with questions, go to next one and reset timer
 			} else {
-				timeLeft = 5;
+				timeLeft = 30;
 				game();
 			}
 		//Display remaining time
@@ -133,14 +133,72 @@ $(document).ready(function(){
 		}
 	}
 
-
-	$("#option-0").click(function() {
-		alert("Option 0");
+	$(".option").click(function() {
+		var answer = $(this).attr("id");
+		if (index == 0) {
+			if (answer == "option-1") {
+				alert("You were right!");
+			} else {
+				alert("You were wrong!");
+			}
+		} else if (index == 1) {
+			if (answer == "option-0") {
+				alert("You were right!");
+			} else {
+				alert("You were wrong!");
+			}
+		} else if (index == 2) {
+			if (answer == "option-3") {
+				alert("You were right!");
+			} else {
+				alert("You were wrong!");
+			}
+		} else if (index == 3) {
+			if (answer == "option-3") {
+				alert("You were right!");
+			} else {
+				alert("You were wrong!");
+			}
+		} else if (index == 4) {
+			if (answer == "option-2") {
+				alert("You were right!");
+			} else {
+				alert("You were wrong!");
+			}
+		} else if (index == 5) {
+			if (answer == "option-2") {
+				alert("You were right!");
+			} else {
+				alert("You were wrong!");
+			}
+		} else if (index == 6) {
+			if (answer == "option-0") {
+				alert("You were right!");
+			} else {
+				alert("You were wrong!");
+			}
+		} else if (index == 7) {
+			if (answer == "option-0") {
+				alert("You were right!");
+			} else {
+				alert("You were wrong!");
+			}
+		} else if (index == 8) {
+			if (answer == "option-0") {
+				alert("You were right!");
+			} else {
+				alert("You were wrong!");
+			}
+		} else if (index == 9) {
+			if (answer == "option-1") {
+				alert("You were right!");
+			} else {
+				alert("You were wrong!");
+			}
+		}
 	});
 
-	$("#option-1").click(function() {
-		alert("Option 1");
-	});
+
 
 
 });

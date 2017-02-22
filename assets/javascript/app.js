@@ -100,10 +100,12 @@ $(document).ready(function(){
 	var index = 0;
 	var timeLeft = 29;
 	var timer;
+	var shortTimer;
 
 	game();
 
 	function game() {
+		clearTimeout(shortTimer);
 		timer = setInterval(countdown, 1000);
 		$("#question").text(questionBank.questions[index].question);
 		$("#option-0").text(questionBank.questions[index].answers[0]);
@@ -116,15 +118,11 @@ $(document).ready(function(){
 	function countdown() {
 		//Time is up
 		if (timeLeft == -1) {
-			clearTimeout(timer);
-			index++;
+			timeUp(index, answerKey[index]);
 			//Check if finished all questions
 			if (index == 10) {
-				//alert("done");
+				gameComplete();
 			//If not done with questions, go to next one and reset timer
-			} else {
-				timeLeft = 30;
-				game();
 			}
 		//Display remaining time
 		} else {
@@ -135,71 +133,102 @@ $(document).ready(function(){
 
 	$(".option").click(function() {
 		var answer = $(this).attr("id");
+		clearTimeout(timer);
 		if (index == 0) {
 			if (answer == "option-1") {
-				alert("You were right!");
+				correct(index, answerKey[index]);
 			} else {
-				alert("You were wrong!");
+				wrong(index, answerKey[index]);
 			}
 		} else if (index == 1) {
 			if (answer == "option-0") {
-				alert("You were right!");
+				correct(index, answerKey[index]);
 			} else {
-				alert("You were wrong!");
+				wrong(index, answerKey[index]);
 			}
 		} else if (index == 2) {
 			if (answer == "option-3") {
-				alert("You were right!");
+				correct(index, answerKey[index]);
 			} else {
-				alert("You were wrong!");
+				wrong(index, answerKey[index]);
 			}
 		} else if (index == 3) {
 			if (answer == "option-3") {
-				alert("You were right!");
+				correct(index, answerKey[index]);
 			} else {
-				alert("You were wrong!");
+				wrong(index, answerKey[index]);
 			}
 		} else if (index == 4) {
 			if (answer == "option-2") {
-				alert("You were right!");
+				correct(index, answerKey[index]);
 			} else {
-				alert("You were wrong!");
+				wrong(index, answerKey[index]);
 			}
 		} else if (index == 5) {
 			if (answer == "option-2") {
-				alert("You were right!");
+				correct(index, answerKey[index]);
 			} else {
-				alert("You were wrong!");
+				wrong(index, answerKey[index]);
 			}
 		} else if (index == 6) {
 			if (answer == "option-0") {
-				alert("You were right!");
+				correct(index, answerKey[index]);
 			} else {
-				alert("You were wrong!");
+				wrong(index, answerKey[index]);
 			}
 		} else if (index == 7) {
 			if (answer == "option-0") {
-				alert("You were right!");
+				correct(index, answerKey[index]);
 			} else {
-				alert("You were wrong!");
+				wrong(index, answerKey[index]);
 			}
 		} else if (index == 8) {
 			if (answer == "option-0") {
-				alert("You were right!");
+				correct(index, answerKey[index]);
 			} else {
-				alert("You were wrong!");
+				wrong(index, answerKey[index]);
 			}
 		} else if (index == 9) {
 			if (answer == "option-1") {
-				alert("You were right!");
+				correct(index, answerKey[index]);
 			} else {
-				alert("You were wrong!");
+				wrong(index, answerKey[index]);
 			}
 		}
 	});
 
+	function correct(ind, ans) {
+		clearTimeout(timer);
+		shortTimer = window.setTimeout(game, 5000);
+		$("#question").text("Correct!");
+		$(".option").empty();
+		index++;
+		timeLeft = 30;
+	}
 
+	function wrong(ind, ans) {
+		clearTimeout(timer);
+		shortTimer = window.setTimeout(game, 5000);
+		$("#question").text("Wrong!");
+		$(".option").empty();
+		$("#option-0").text("The correct answer was: " + questionBank.questions[ind].answers[ans]);
+		index++;
+		timeLeft = 30;
+	}
 
+	function timeUp(ind, ans) {
+		clearTimeout(timer);
+		shortTimer = window.setTimeout(game, 5000);
+		$("#question").text("You ran out of time!");
+		$(".option").empty();
+		$("#option-0").text("The correct answer was: " + questionBank.questions[ind].answers[ans]);
+		index++;
+		timeLeft = 30;
+	}
+
+	function gameComplete() {
+
+	}
 
 });
 

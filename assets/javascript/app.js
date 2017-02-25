@@ -101,6 +101,9 @@ $(document).ready(function(){
 	var timeLeft = 29;
 	var timer;
 	var shortTimer;
+	var wins = 0;
+	var losses = 0;
+	var unanswered = 0;
 
 	game();
 
@@ -119,11 +122,6 @@ $(document).ready(function(){
 		//Time is up
 		if (timeLeft == -1) {
 			timeUp(index, answerKey[index]);
-			//Check if finished all questions
-			if (index == 10) {
-				gameComplete();
-			//If not done with questions, go to next one and reset timer
-			}
 		//Display remaining time
 		} else {
 			$("#timer").text(timeLeft + " seconds remaining");
@@ -204,6 +202,10 @@ $(document).ready(function(){
 		$(".option").empty();
 		index++;
 		timeLeft = 30;
+		wins++;
+		if (index == 10) {
+			gameComplete();
+		}
 	}
 
 	function wrong(ind, ans) {
@@ -214,6 +216,11 @@ $(document).ready(function(){
 		$("#option-0").text("The correct answer was: " + questionBank.questions[ind].answers[ans]);
 		index++;
 		timeLeft = 30;
+		losses++;
+		//Check if finished all questions
+		if (index == 10) {
+			gameComplete();
+		}
 	}
 
 	function timeUp(ind, ans) {
@@ -224,9 +231,29 @@ $(document).ready(function(){
 		$("#option-0").text("The correct answer was: " + questionBank.questions[ind].answers[ans]);
 		index++;
 		timeLeft = 30;
+		unanswered++;
+		if (index == 10) {
+			gameComplete();
+		}
 	}
 
 	function gameComplete() {
+		clearTimeout(timer);
+		clearTimeout(shortTimer);
+		$("#question").text("Game Over!");
+		$(".option").empty();
+		$("#option-0").text("Correct Answers: " + wins);
+		$("#option-1").text("Incorrect Answers: " + losses);
+		$("#option-2").text("Unanswered: " + unanswered);
+		$("#option-3").text("Play Again?");
+
+		$("#option-3").click(function() {
+			wins = 0;
+			losses = 0;
+			unanswered = 0;
+			index = 0;
+			game();
+		});
 
 	}
 

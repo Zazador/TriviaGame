@@ -1,0 +1,41 @@
+body {
+	background-image: url("../images/background.jpg")
+}
+
+h1 {
+	font-size: 50px;
+	color: black;
+	text-align: center;
+	font-family: 'Audiowide', cursive;
+}
+
+h4 {
+	font-size: 30px;
+}
+
+#randomNum {
+	font-size: 80px;
+	text-align: center;
+	font-family: 'Audiowide', cursive;
+}
+
+p {
+	font-size: 15px;
+	text-align: center;
+	font-family: 'Audiowide', cursive;
+}
+
+.panel {
+	text-align: center;
+	font-family: 'Audiowide', cursive;
+}
+
+.col-md-8 {
+	margin: 0 auto;
+	float: none;
+}
+
+.panel-heading, .panel-body {
+	font-size: 20px;
+}
+

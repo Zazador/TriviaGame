@@ -204,7 +204,7 @@ function correct(ind, ans) {
 	timeLeft = 30;
 	wins++;
 	// Constructing a URL to search Giphy for the name of the person who said the quote
-	var queryURL = "http://api.giphy.com/v1/gifs/search?q=" +
+	var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
 	digimon[index] + "&api_key=dc6zaTOxFJmzC&limit=1";
 
 	// Performing our AJAX GET request
@@ -236,7 +236,7 @@ function wrong(ind, ans) {
 	timeLeft = 30;
 	losses++;
 	// Constructing a URL to search Giphy for the name of the person who said the quote
-	var queryURL = "http://api.giphy.com/v1/gifs/search?q=" +
+	var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
 	digimon[index] + "&api_key=dc6zaTOxFJmzC&limit=1";
 
     // Performing our AJAX GET request
@@ -268,7 +268,7 @@ function timeUp(ind, ans) {
 	timeLeft = 30;
 	unanswered++;
 		// Constructing a URL to search Giphy for the name of the person who said the quote
-		var queryURL = "http://api.giphy.com/v1/gifs/search?q=" +
+		var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
 		digimon[index] + "&api_key=dc6zaTOxFJmzC&limit=1";
 
       	// Performing our AJAX GET request
